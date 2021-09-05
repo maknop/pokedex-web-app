@@ -25,8 +25,10 @@ Node.js.
 ```
 go run server.go
 ```
+Navigate to [localhost:8080/pokemon](localhost:8080).
 
 ## Testing
 ```
 go test
 ```
+
