@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"io/ioutil"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,28 +17,28 @@ type Pokemon struct {
 func main() {
 	router := gin.New()
 
-	router.use(gin.Logger())
+	router.Use(gin.Logger())
 
-	router.get("/pokemon", func(c *gin.context) {
-		resp, err := http.get("https://pokeapi.co/api/v2/pokemon")
+	router.GET("/pokemon", func(c *gin.Context) {
+		resp, err := http.NewRequest("GET", "https://pokeapi.co/api/v2/pokemon", nil)
 		if err != nil {
 
 			log.Fatalln(err)
 		}
 
-		all_pokemon, err := ioutil.readall(resp.body)
+		all_pokemon, err := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(all_pokemon))
 		defer resp.Body.Close()
 	})
 
-	router.get("/pokemon/{id}", func(c *gin.context) {
-		resp, err := http.get("https://pokeapi.co/api/v2/pokemon/{id}")
+	router.GET("/pokemon/{id}", func(c *gin.Context) {
+		resp, err := http.NewRequest("GET", "https://pokeapi.co/api/v2/pokemon/{id}", nil)
 
 		if err != nil {
 			log.Fatalln(err)
 		}
 
-		all_pokemon, err := ioutil.readall(resp.body)
+		all_pokemon, err := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(all_pokemon))
 
 		defer resp.Body.Close()
