@@ -1,4 +1,4 @@
-package pokemonHandler
+package pokemon
 
 import (
 	"fmt"

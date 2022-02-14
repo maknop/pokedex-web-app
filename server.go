@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/maknop/pokedex-api/routes/pokemonHandler"
+	pokemon "github.com/maknop/pokedex-api/routes/pokemon"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,8 +16,8 @@ func main() {
 
 	router.Use(gin.Logger())
 
-	pokemonHandler.Routes(router)
-	pokemonHandler.Routes(router)
+	pokemon.Routes(router)
+	pokemon.Routes(router)
 
 	router.Run("localhost:8080")
 }
