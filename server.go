@@ -1,9 +1,10 @@
 package main
 
 import (
-	pokemon "pokedex-api/routes/pokemon"
-
+	"os"
+	log "github.com/sirupsen/logrus"
 	"github.com/gin-gonic/gin"
+	pokemon "pokedex-api/routes/pokemon"
 )
 
 type Pokemon struct {
@@ -11,11 +12,23 @@ type Pokemon struct {
 	Name string `json:"name"`
 }
 
+func loggingOutput() {
+	logFile, _ := os.Create("logs/api_requests.log")
+
+	log.SetFormatter(&log.JSONFormatter{})
+	log.SetOutput(logFile)
+}
+
 func main() {
 	router := gin.Default()
+	router.LoadHTMLGlob("templates/*.tmpl")
 
-	router.Use(gin.Logger())
+	// Writing logs to file
+	loggingOutput()
 
+	log.Info("Pokedex API running.")
+
+	// Routes
 	pokemon.GetAllPokemon(router)
 	pokemon.GetPokemonById(router)
 
