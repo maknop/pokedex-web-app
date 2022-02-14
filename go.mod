@@ -1,4 +1,4 @@
-module github.com/pokedex-api
+module github.com/maknop/pokedex-api
 
 go 1.17
 

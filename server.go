@@ -1,7 +1,7 @@
 package main
 
 import (
-	"pokedex-api/routes/pokemonHandler"
+	"github.com/maknop/pokedex-api/routes/pokemonHandler"
 
 	"github.com/gin-gonic/gin"
 )
