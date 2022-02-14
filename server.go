@@ -10,8 +10,14 @@ import (
 )
 
 type Pokemon struct {
-	Name string `json:"name"`
 	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+var pokemon = []Pokemon{}
+
+func getPokemon(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, pokemon)
 }
 
 func main() {
@@ -20,25 +26,26 @@ func main() {
 	router.Use(gin.Logger())
 
 	router.GET("/pokemon", func(c *gin.Context) {
-		resp, err := http.NewRequest("GET", "https://pokeapi.co/api/v2/pokemon", nil)
+		resp, err := http.Get("https://pokeapi.co/api/v2/pokemon")
 		if err != nil {
-
 			log.Fatalln(err)
 		}
 
-		all_pokemon, err := ioutil.ReadAll(resp.Body)
+		all_pokemon, _ := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(all_pokemon))
+
 		defer resp.Body.Close()
 	})
 
-	router.GET("/pokemon/{id}", func(c *gin.Context) {
-		resp, err := http.NewRequest("GET", "https://pokeapi.co/api/v2/pokemon/{id}", nil)
+	router.GET("/pokemon/:id", func(c *gin.Context) {
+		pokemon_id := c.Param("id")
+		resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s", pokemon_id))
 
 		if err != nil {
 			log.Fatalln(err)
 		}
 
-		all_pokemon, err := ioutil.ReadAll(resp.Body)
+		all_pokemon, _ := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(all_pokemon))
 
 		defer resp.Body.Close()
