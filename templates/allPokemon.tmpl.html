@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <style type="text/css" media="screen">
+      @import url("/css/pokedex.css");
+    </style>
+  </head>
+  <body>
+    <h1 class="center">{{ .title }}</h1>
+    <p>CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
+
+    {{ range .allPokemon }}
+      <div id="squares" class="squares">hi</div>
+    {{end}}
+      
+  </body>
+
+</html>
