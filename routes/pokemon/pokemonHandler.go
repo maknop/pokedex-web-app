@@ -20,8 +20,11 @@ func GetAllPokemon(router *gin.Engine) {
 		all_pokemon, _ := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(all_pokemon))
 
-		c.HTML(http.StatusOK, "pokedex.tmpl", gin.H{
-			"title": "Main website",
+		c.HTML(http.StatusOK, "allPokemon.tmpl.html", gin.H{
+			"title"      : "Pokédex",
+			"caught"     : "1118",
+			"seen"       : "1118",
+			"allPokemon" : all_pokemon,
 		})
 
 		defer resp.Body.Close()
@@ -29,11 +32,32 @@ func GetAllPokemon(router *gin.Engine) {
 }
 
 func GetPokemonById(router *gin.Engine) {
-	router.GET("/pokemon/:id", func(c *gin.Context) {
+	router.GET("/pokemon/id/:id", func(c *gin.Context) {
 		pokemon_id := c.Param("id")
 		log.Info("Request for pokemon data with ID ", pokemon_id, " made." )
-		resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s", pokemon_id))
 
+		resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s", pokemon_id))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		all_pokemon, _ := ioutil.ReadAll(resp.Body)
+		fmt.Println(string(all_pokemon))
+
+		c.HTML(http.StatusOK, "singlePokemon.tmpl.html", gin.H{
+			"title" : "Single Pokemon",
+		})
+
+		defer resp.Body.Close()
+	})
+}
+
+func GetPokemonByName(router *gin.Engine) {
+	router.GET("/pokemon/name/:name", func(c *gin.Context) {
+		pokemon_name := c.Param("name")
+		log.Info("Request for pokemon data with name ", pokemon_name, " made." )
+		
+		resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s", pokemon_name))
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -48,3 +72,4 @@ func GetPokemonById(router *gin.Engine) {
 		defer resp.Body.Close()
 	})
 }
+
