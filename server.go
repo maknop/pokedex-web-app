@@ -21,16 +21,17 @@ func loggingOutput() {
 
 func main() {
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/*.tmpl")
+	router.LoadHTMLGlob("templates/*.tmpl.html")
 
 	// Writing logs to file
 	loggingOutput()
 
-	log.Info("Pokedex API running.")
+	log.Info("Pokedex API running...")
 
 	// Routes
 	pokemon.GetAllPokemon(router)
 	pokemon.GetPokemonById(router)
+	pokemon.GetPokemonByName(router)
 
 	router.Run("localhost:8080")
 }
