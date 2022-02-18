@@ -1,4 +1,4 @@
-# Pokemon Data API
+# Pokédex Web App - Pokémon Go Inspired!
 
 <p align="center">
   <img src="/img/pokeball.png" width="100" height="100" />
