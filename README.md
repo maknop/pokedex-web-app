@@ -27,8 +27,7 @@ go run server.go
 ```
 Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 
-## Testing
-```
-go test
-```
-
+## Screenshots of Application Running
+<p align="center">
+  <img src="/img/pokemon_documentation_image_1.png" />
+</p>
