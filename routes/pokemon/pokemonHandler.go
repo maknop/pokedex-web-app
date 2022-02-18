@@ -18,36 +18,31 @@ func GetAllPokemon(router *gin.Engine) {
 
 	router.GET("/pokemon", func(c *gin.Context) {
 		log.Info("Request for all pokemon data made.")
-		resp, err := http.Get("https://pokeapi.co/api/v2/pokemon")
-		if err != nil {
-			log.Fatal(err)
-		}
+		for i := 1; i <= 151; i++ {
 
-		//// Redirect to other endpoint
-		//c.Request.URL.Path = "/pokemon/:id"
-		//router.HandleContext(c)
+			resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%d", i))
+			if err != nil {
+				log.Fatal(err)
+			}
 
-		pokemon_data, err := io.ReadAll(resp.Body)
-		if err != nil {
-			log.Fatal(err)
-		}
+			pokemon_data, err := io.ReadAll(resp.Body)
+			if err != nil {
+				log.Fatal(err)
+			}
 
-		for i := range pokemon_data {
-			all_pokemon_data := gjson.Get(string(pokemon_data), fmt.Sprintf("results.%d.name", i))
+			all_pokemon_data := gjson.Get(string(pokemon_data), "sprites.front_default")
 			for _, name := range all_pokemon_data.Array() {
 				pokemon_name = append(pokemon_name, name.String())
 			}
 			log.Info(all_pokemon_data)
 		}
 
-		log.Info(all_pokemon_data)
-
 		c.HTML(http.StatusOK, "allPokemon.tmpl.html", gin.H{
-			"title":        "Pokédex",
-			"caught":       "1118",
-			"seen":         "1118",
-			"allPokemon":   pokemon_name,
-			"countPokemon": all_pokemon_data,
+			"title":         "Pokédex",
+			"caught":        "1118",
+			"seen":          "1118",
+			"pokemonImages": pokemon_name,
+			"countPokemon":  all_pokemon_data,
 		})
 
 	})

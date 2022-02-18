@@ -11,9 +11,9 @@
   </div>
 
   <div class="center float-container">
-    {{ range $name := .allPokemon }}
+    {{ range $name := .pokemonImages }}
       <div id="squares" class="float-child">
-        {{ $name }}
+        <img src={{ $name }}>
       </div>
     {{end}}
   </div>
