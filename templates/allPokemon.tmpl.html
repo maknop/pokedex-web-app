@@ -7,13 +7,15 @@
 <body>
   <div class="center">
     <h1>{{ .title }}</h1>
-    <p>CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
+    <p class="center-text">CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
   </div>
 
   <div class="center float-container">
     {{ range $name := .pokemonImages }}
       <div id="squares" class="float-child">
-        <img src={{ $name }}>
+        <input type="image" src={{ $name }}>
+        <a href="singlePokemon.tmpl.html"></a>
+        </input>
       </div>
     {{end}}
   </div>
