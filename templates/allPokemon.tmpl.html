@@ -10,10 +10,11 @@
     <p>CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
   </div>
 
-
   <div class="center float-container">
     {{ range $name := .allPokemon }}
-      <div id="squares" class="float-child">{{ $name }}</div>
+      <div id="squares" class="float-child">
+        {{ $name }}
+      </div>
     {{end}}
   </div>
 </body>

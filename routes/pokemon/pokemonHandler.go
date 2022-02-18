@@ -13,7 +13,8 @@ import (
 )
 
 func GetAllPokemon(router *gin.Engine) {
-	var all_pokemon gjson.Result
+	var all_pokemon_data gjson.Result
+	pokemon_name := []string{}
 
 	router.GET("/pokemon", func(c *gin.Context) {
 		log.Info("Request for all pokemon data made.")
@@ -32,18 +33,21 @@ func GetAllPokemon(router *gin.Engine) {
 		}
 
 		for i := range pokemon_data {
-			all_pokemon = gjson.Get(string(pokemon_data), fmt.Sprintf("results.%d.name", i))
-			log.Info(all_pokemon)
+			all_pokemon_data := gjson.Get(string(pokemon_data), fmt.Sprintf("results.%d.name", i))
+			for _, name := range all_pokemon_data.Array() {
+				pokemon_name = append(pokemon_name, name.String())
+			}
+			log.Info(all_pokemon_data)
 		}
 
-		log.Info(all_pokemon)
+		log.Info(all_pokemon_data)
 
 		c.HTML(http.StatusOK, "allPokemon.tmpl.html", gin.H{
 			"title":        "Pokédex",
 			"caught":       "1118",
 			"seen":         "1118",
-			"allPokemon":   all_pokemon,
-			"countPokemon": all_pokemon,
+			"allPokemon":   pokemon_name,
+			"countPokemon": all_pokemon_data,
 		})
 
 	})

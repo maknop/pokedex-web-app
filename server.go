@@ -2,9 +2,10 @@ package main
 
 import (
 	"os"
-	log "github.com/sirupsen/logrus"
-	"github.com/gin-gonic/gin"
 	pokemon "pokedex-api/routes/pokemon"
+
+	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 )
 
 func loggingOutput() {
@@ -17,7 +18,7 @@ func loggingOutput() {
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*.tmpl.html")
-	router.Static("/css", "../css")
+	router.Static("/css", "./css")
 
 	// Writing logs to file
 	loggingOutput()
