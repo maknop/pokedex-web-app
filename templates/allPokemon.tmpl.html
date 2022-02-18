@@ -1,16 +1,20 @@
 <html>
 <head>
   <style type="text/css" media="screen">
-    @import url("/css/pokedex.css");
+    @import url("/css/style.css");
   </style>
 </head>
 <body>
-  <h1 class="center">{{ .title }}</h1>
-  <p>CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
+  <div class="center">
+    <h1>{{ .title }}</h1>
+    <p>CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
+  </div>
 
-  {{ range .all_pokemon }}
-    <div id="squares" class="squares">{{ .allPokemon }}</div>
-  {{end}}
-    
+
+  <div class="center float-container">
+    {{ range $name := . }}
+      <div id="squares" class="float-child">{{ $name }}</div>
+    {{end}}
+  </div>
 </body>
 </html>
