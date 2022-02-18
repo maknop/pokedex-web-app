@@ -1,0 +1,32 @@
+/* Class for centering */
+.center {
+    text-align: center;
+}
+
+/* Boxes display side-by-side */
+.float-container {
+    width: 975px;
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width:150px;
+    height:200px;
+    float: left;
+    padding: 20px;
+    border:1px dotted #000;
+} 
+
+.center.float-container {
+    height:240px;
+    text-align: center;
+    border: 1px dotted #000;
+    padding: 20px;
+    position: absolute;
+    top:0;
+    bottom: 400;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
