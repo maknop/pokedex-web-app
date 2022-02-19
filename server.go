@@ -1,19 +1,11 @@
 package main
 
 import (
-	"os"
 	pokemon "pokedex-api/routes/pokemon"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
-
-func loggingOutput() {
-	logFile, _ := os.Create("logs/api_requests.log")
-
-	log.SetFormatter(&log.JSONFormatter{})
-	log.SetOutput(logFile)
-}
 
 func main() {
 	router := gin.Default()
