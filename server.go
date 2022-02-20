@@ -1,7 +1,8 @@
 package main
 
 import (
-	pokemon "pokedex-api/routes/pokemon"
+	pokemon "pokedex-web-app/routes"
+	utils "pokedex-web-app/utils"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -13,7 +14,7 @@ func main() {
 	router.Static("/styles", "./styles")
 
 	// Writing logs to file
-	loggingOutput()
+	utils.LoggingOutput()
 
 	log.Info("Pokedex API running...")
 
