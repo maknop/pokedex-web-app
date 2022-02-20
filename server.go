@@ -10,7 +10,7 @@ import (
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*.tmpl.html")
-	router.Static("/css", "./css")
+	router.Static("/styles", "./styles")
 
 	// Writing logs to file
 	loggingOutput()
