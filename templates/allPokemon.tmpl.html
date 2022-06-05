@@ -11,9 +11,9 @@
   </div>
 
   <div class="center float-container">
-    {{ range $name := .pokemonImages }}
+    {{ range .pokemonData }}
       <div id="squares" class="float-child">
-        <input type="image" src={{ $name }}>
+        <input type="image" src={{ .Images.FrontDefault }}>
         <a href="singlePokemon.tmpl.html"></a>
         </input>
       </div>

@@ -1,11 +1,13 @@
 package pokemon
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
-	"sync"
 
+	pokemon "pokedex-web-app/types"
 	views "pokedex-web-app/views"
 
 	"github.com/gin-gonic/gin"
@@ -14,39 +16,36 @@ import (
 )
 
 func GetAllPokemon(router *gin.Engine) {
-	var all_pokemon_data gjson.Result
-	pokemon_name := []string{}
-	//pokemon_name := make([]string, 152)
+	var curr_pokemon pokemon.Pokemon
+	var all_pokemon []pokemon.Pokemon
 
 	router.GET("/", func(c *gin.Context) {
 		log.Info("Request for all pokemon data made.")
 
 		for i := 1; i <= 151; i++ {
-			wg := sync.WaitGroup{}
-			wg.Add(1)
-			go func(idx int) {
-				resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%d", idx))
-				if err != nil {
-					log.Fatal(err)
-				}
+			resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%d", i))
+			if err != nil {
+				log.Fatal(err)
+			}
 
-				pokemon_data, err := io.ReadAll(resp.Body)
-				if err != nil {
-					log.Fatal(err)
-				}
+			pokemon_data, err := io.ReadAll(resp.Body)
+			if err != nil {
+				log.Fatal(err)
+			}
 
-				all_pokemon_data := gjson.Get(string(pokemon_data), "sprites.front_default")
-				for _, name := range all_pokemon_data.Array() {
-					pokemon_name = append(pokemon_name, name.String())
-					//pokemon_name[idx] = name.String()
-				}
-				log.Info(all_pokemon_data)
+			if err := json.NewDecoder(bytes.NewReader(pokemon_data)).Decode(&curr_pokemon); err != nil {
+				log.Fatalf("Error parsing json data: %s", err)
+			} else {
+				log.Println("Pokemon data received")
+			}
 
-				defer wg.Done()
-			}(i)
+			fmt.Printf("Pokemon ID: %3d, Pokemon Name: %s\n", curr_pokemon.ID, curr_pokemon.Name)
+
+			all_pokemon = append(all_pokemon, curr_pokemon)
 		}
 
-		views.ViewAllPokemon(c, pokemon_name, all_pokemon_data)
+		fmt.Println(all_pokemon)
+		views.ViewAllPokemon(c, all_pokemon)
 
 	})
 }

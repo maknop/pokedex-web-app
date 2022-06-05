@@ -4,17 +4,17 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/tidwall/gjson"
+
+	pokemon "pokedex-web-app/types"
 )
 
 // Endpoint: "/"
-func ViewAllPokemon(c *gin.Context, pokemon_name []string, all_pokemon_data gjson.Result) {
+func ViewAllPokemon(c *gin.Context, pokemon_data []pokemon.Pokemon) {
 	c.HTML(http.StatusOK, "allPokemon.tmpl.html", gin.H{
-		"title":         "Pokédex",
-		"caught":        "1118",
-		"seen":          "1118",
-		"pokemonImages": pokemon_name,
-		"countPokemon":  all_pokemon_data,
+		"title":       "Pokédex",
+		"caught":      "1118",
+		"seen":        "1118",
+		"pokemonData": pokemon_data,
 	})
 }
 

@@ -3,5 +3,3 @@
 
 # Ignore all log files
 *.log
-
-go.sum
