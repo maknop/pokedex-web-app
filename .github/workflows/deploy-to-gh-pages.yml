@@ -22,9 +22,6 @@ jobs:
     - name: Vet
       run: go vet ./...
       
-    - name: build
-      run: go run *.go
-      
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
