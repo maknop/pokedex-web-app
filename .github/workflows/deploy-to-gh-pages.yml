@@ -19,10 +19,10 @@ jobs:
         go-version: 1.18
 
     - name: Format
-      run: go fmt -v ./...
+      run: go fmt ./...
 
     - name: Vet
-      run: go vet -v ./..
+      run: go vet ./..
       
     - name: build
       run: go run *.go
