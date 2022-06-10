@@ -10,7 +10,7 @@ import (
 
 // Endpoint: "/"
 func ViewAllPokemon(c *gin.Context, pokemon_data []pokemon.Pokemon) {
-	c.HTML(http.StatusOK, "allPokemon.tmpl.html", gin.H{
+	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":       "Pokédex",
 		"caught":      "1118",
 		"seen":        "1118",

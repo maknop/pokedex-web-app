@@ -1,0 +1,23 @@
+<html>
+<head>
+  <style type="text/css" media="screen">
+    @import url("/styles/style.css");
+  </style>
+</head>
+<body>
+  <div class="center">
+    <h1>{{ .title }}</h1>
+    <p class="center-text">CAUGHT: {{ .caught }} SEEN: {{ .seen }}</p>
+  </div>
+
+  <div class="center float-container">
+    {{ range .pokemonData }}
+      <div id="squares" class="float-child">
+        <input type="image" src={{ .Images.FrontDefault }}>
+          <a href="singlePokemon.tmpl.html"></a>
+        </input>
+      </div>
+    {{end}}
+  </div>
+</body>
+</html>
