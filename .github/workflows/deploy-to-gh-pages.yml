@@ -30,6 +30,3 @@ jobs:
       with:
         branch: gh-pages
         folder: templates
-
-    - name: Run
-      run: go run *.go
