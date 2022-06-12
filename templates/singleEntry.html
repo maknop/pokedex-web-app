@@ -1,0 +1,19 @@
+<html>
+<head>
+  <style type="text/css" media="screen">
+    @import url("/styles/style.css");
+  </style>
+</head>
+<body>
+  <div class="center float-container">
+    <div>
+      <img src={{ .pokemonData.Images.FrontDefault }}>
+      <img src={{ .pokemonData.Images.FrontShiny }}>
+    </div>
+    <h1 class="center">{{ .pokemonData.ID}} {{ .pokemonData.Name }}</h1>
+    <div>
+      <!--<h5 class="center">Weight: {{ .pokemonData.Weight }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height: {{ .pokemonData.Height }}</h5>-->
+    </div>
+  </div>
+</body>
+</html>

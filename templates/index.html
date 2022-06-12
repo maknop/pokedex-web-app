@@ -11,11 +11,18 @@
   </div>
 
   <div class="center float-container">
+
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+
     {{ range .pokemonData }}
       <div id="squares" class="float-child">
-        <input type="image" src={{ .Images.FrontDefault }}>
-          <a href="singlePokemon.tmpl.html"></a>
-        </input>
+        <a href="/pokemon/{{ .Name }}">
+          <img src={{ .Images.FrontDefault }}>
+        </a>
+        <p>{{ .Name }}</p>
       </div>
     {{end}}
   </div>

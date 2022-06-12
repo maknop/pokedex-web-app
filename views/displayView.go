@@ -12,15 +12,16 @@ import (
 func ViewAllPokemon(c *gin.Context, pokemon_data []pokemon.Pokemon) {
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":       "Pokédex",
-		"caught":      "1118",
-		"seen":        "1118",
+		"caught":      "898",
+		"seen":        "898",
 		"pokemonData": pokemon_data,
 	})
 }
 
 // Endpoint: "pokemon/:id"
-func ViewPokemonById(c *gin.Context, pokemon_name string) {
-	c.HTML(http.StatusOK, "singlePokemon.tmpl.html", gin.H{
-		"pokemonName": pokemon_name,
+func ViewPokemonById(c *gin.Context, pokemon_id string, pokemon_data pokemon.Pokemon) {
+	c.HTML(http.StatusOK, "singleEntry.html", gin.H{
+		"pokemonID":   pokemon_id,
+		"pokemonData": pokemon_data,
 	})
 }

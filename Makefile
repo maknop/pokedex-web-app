@@ -7,5 +7,5 @@ vet:
 install: fmt vet
 	go mod download
 
-run: fmt vet
+run:
 	go run *.go
