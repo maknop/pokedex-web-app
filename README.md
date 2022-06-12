@@ -4,6 +4,9 @@
   <img src="/img/pokeball.png" width="100" height="100" />
 </p>
 
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/maknop/pokedex-web-app)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5c782812-04fe-4899-9632-e01d60c92921/deploy-status)](https://app.netlify.com/sites/dainty-griffin-069603/deploys)
+
 ## Purpose
 The purpose of this project is to create a REST API that interacts with  
 the [PokéAPI](https://pokeapi.co/) website and retrieves the necessary data which will be  
