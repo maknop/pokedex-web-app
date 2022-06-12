@@ -34,3 +34,7 @@ Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 <p align="center">
   <img src="/img/pokemon-documentation-image-1.png" />
 </p>
+
+<p align="center">
+  <img src="/img/pokemon-documentation-image-2.png" />
+</p>
