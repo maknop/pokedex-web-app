@@ -5,11 +5,11 @@ type Pokemon struct {
 	Name   string        `json:"name"`
 	Height int           `json:"height"`
 	Weight int           `json:"weight"`
-	Types  PokemonType   `json:"-"`
+	Types  PokemonTypes  `json:"types"`
 	Images PokemonImages `json:"Sprites"`
 }
 
-type PokemonType struct {
+type PokemonTypes struct {
 }
 
 type PokemonImages struct {
