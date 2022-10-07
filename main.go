@@ -1,14 +1,17 @@
 package main
 
 import (
-	pokemon "pokedex-web-app/routes"
-	utils "pokedex-web-app/utils"
+	"os"
 	data "pokedex-web-app/data"
-	
+	pokemon "pokedex-web-app/routes"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
+
+func init() {
+	log.SetOutput(os.Stdout)
+}
 
 func main() {
 	router := gin.Default()
@@ -17,14 +20,11 @@ func main() {
 
 	all_pokemon := data.GetPokemonData()
 
-	// Writing logs to file
-	utils.LoggingOutput()
-
 	log.Info("Pokedex API running...")
 
 	// Routes
 	pokemon.AllPokemon(router, all_pokemon)
 	pokemon.PokemonById(router, all_pokemon)
 
-	router.Run("localhost:8000")
+	router.Run("localhost:8080")
 }
