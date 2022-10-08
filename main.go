@@ -1,13 +1,10 @@
 package main
 
 import (
-	pokemon "pokedex-web-app/routes"
-	utils "pokedex-web-app/utils"
 	data "pokedex-web-app/data"
-	
+	pokemon "pokedex-web-app/routes"
 
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -17,10 +14,7 @@ func main() {
 
 	all_pokemon := data.GetPokemonData()
 
-	// Writing logs to file
-	utils.LoggingOutput()
-
-	log.Info("Pokedex API running...")
+	//log.Info("Pokedex API running...")
 
 	// Routes
 	pokemon.AllPokemon(router, all_pokemon)

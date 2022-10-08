@@ -9,7 +9,7 @@ import (
 )
 
 func AllPokemon(router *gin.Engine, all_pokemon []pokemon.Pokemon) {
-	router.GET("/pokemon", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		views.ViewAllPokemon(c, all_pokemon)
 	})
 }
