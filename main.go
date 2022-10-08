@@ -20,5 +20,5 @@ func main() {
 	pokemon.AllPokemon(router, all_pokemon)
 	pokemon.PokemonById(router, all_pokemon)
 
-	router.Run("localhost:8000")
+	router.Run()
 }
