@@ -18,9 +18,16 @@ Node.js.
   <img src="/img/sequence-diagram.jpg" />
 </p>
 
-## Run application
+## Build and Run application
+Create a pod on your local machine:
 ```
-podman build -t pokedex-web-app:1.0 .
+sudo podman pod create
+```
+
+Build and run your container:
+```
+podman build -t pokedex-web-app:latest .
+podman run -d -p 8080:8080 pokdex-web-app:latest
 ```
 Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 

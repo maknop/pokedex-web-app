@@ -10,5 +10,4 @@ RUN go install -v ./...
 
 EXPOSE 8080
 
-# Run the executable
 CMD ["pokedex-web-app"]
