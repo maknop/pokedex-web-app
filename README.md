@@ -18,17 +18,17 @@ Node.js.
   <img src="/img/sequence-diagram.jpg" />
 </p>
 
+## Run application
+```
+podman build -t pokedex-web-app:1.0 .
+```
+Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
+
 ## Resource List
 | Resource             | Description                                     |
 | :---                 | :---                                            |
 | GET /v1/pokemon/     | Retrieve a list of all pokemon                  |
 | GET /v1/pokemon/:id  | Retrieve the pokemon corresponding to given id  |
-
-## Run application
-```
-go run server.go
-```
-Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 
 ## Screenshots of Application Running
 <p align="center">

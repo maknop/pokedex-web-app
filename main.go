@@ -3,6 +3,7 @@ package main
 import (
 	data "pokedex-web-app/data"
 	pokemon "pokedex-web-app/routes"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,5 +21,7 @@ func main() {
 	pokemon.AllPokemon(router, all_pokemon)
 	pokemon.PokemonById(router, all_pokemon)
 
-	router.Run()
+	router.Run("localhost:8080")
+
+	time.Sleep(5 * time.Second)
 }
