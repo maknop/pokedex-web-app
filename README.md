@@ -19,6 +19,9 @@ Node.js.
 </p>
 
 ## Build and Run application
+I liked to use [podman](https://podman.io/) for containerization  
+but Docker is fine :)  
+
 Create a pod on your local machine:
 ```
 sudo podman pod create
