@@ -1,6 +1,7 @@
 package views
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,8 +13,8 @@ import (
 func ViewAllPokemon(c *gin.Context, pokemon_data []pokemon.Pokemon) {
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":       "Pokédex",
-		"caught":      "898",
-		"seen":        "898",
+		"caught":      fmt.Sprintf("%d", len(pokemon_data)),
+		"seen":        fmt.Sprintf("%d", len(pokemon_data)),
 		"pokemonData": pokemon_data,
 	})
 }
