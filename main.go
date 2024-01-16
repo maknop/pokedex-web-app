@@ -1,8 +1,8 @@
 package main
 
 import (
-	data "pokedex-web-app/data"
-	pokemon "pokedex-web-app/routes"
+	api "pokedex-web-app/api"
+	routes "pokedex-web-app/routes"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -10,16 +10,14 @@ import (
 
 func main() {
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/*.html")
+	router.LoadHTMLGlob("templates/*.tmpl")
 	router.Static("/styles", "./styles")
 
-	all_pokemon := data.GetPokemonData()
-
-	//log.Info("Pokedex API running...")
+	allPokemon := api.GetPokemonData()
 
 	// Routes
-	pokemon.AllPokemon(router, all_pokemon)
-	pokemon.PokemonById(router, all_pokemon)
+	routes.LandingPage(router, allPokemon)
+	routes.PokemonById(router, allPokemon)
 
 	router.Run("localhost:8080")
 

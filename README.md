@@ -48,3 +48,14 @@ Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 <p align="center">
   <img src="/img/pokemon-documentation-image-2.png" />
 </p>
+
+## Building/Running Container Locally
+```
+podman build -t pokedex-web-app:latest .
+podman run -p 8080:8080 -it --network host <container name>
+```
+
+## Running Docker Compose
+```
+podman-compose up
+```
