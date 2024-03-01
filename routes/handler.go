@@ -1,31 +1,31 @@
 package handler
 
 import (
-	types "pokedex-web-app/types"
+	pokemon "pokedex-web-app/types"
 	views "pokedex-web-app/views"
 
 	"github.com/gin-gonic/gin"
 	//log "github.com/sirupsen/logrus"
 )
 
-func LandingPage(router *gin.Engine, allPokemon []types.Pokemon) {
+func AllPokemon(router *gin.Engine, all_pokemon []pokemon.Pokemon) {
 	router.GET("/", func(c *gin.Context) {
-		views.ViewAllPokemon(c, allPokemon)
+		views.ViewAllPokemon(c, all_pokemon)
 	})
 }
 
-func PokemonById(router *gin.Engine, allPokemon []types.Pokemon) {
-	var currPokemon types.Pokemon
+func PokemonById(router *gin.Engine, all_pokemon []pokemon.Pokemon) {
+	var curr_pokemon pokemon.Pokemon
 
 	router.GET("/pokemon/:id", func(c *gin.Context) {
 		pokemon_id := c.Param("id")
 
-		for _, single := range allPokemon {
+		for _, single := range all_pokemon {
 			if single.Name == pokemon_id {
-				currPokemon = single
+				curr_pokemon = single
 			}
 		}
 
-		views.ViewPokemonById(c, pokemon_id, currPokemon)
+		views.ViewPokemonById(c, pokemon_id, curr_pokemon)
 	})
 }

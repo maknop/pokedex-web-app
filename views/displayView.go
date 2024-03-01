@@ -5,23 +5,23 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	types "pokedex-web-app/types"
+	pokemon "pokedex-web-app/types"
 )
 
 // Endpoint: "/"
-func ViewAllPokemon(c *gin.Context, pokemonData []types.Pokemon) {
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{
+func ViewAllPokemon(c *gin.Context, pokemon_data []pokemon.Pokemon) {
+	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":       "Pokédex",
 		"caught":      "898",
 		"seen":        "898",
-		"pokemonData": pokemonData,
+		"pokemonData": pokemon_data,
 	})
 }
 
 // Endpoint: "pokemon/:id"
-func ViewPokemonById(c *gin.Context, pokemonID string, pokemonData types.Pokemon) {
-	c.HTML(http.StatusOK, "singleEntry.tmpl", gin.H{
-		"pokemonID":   pokemonID,
-		"pokemonData": pokemonData,
+func ViewPokemonById(c *gin.Context, pokemon_id string, pokemon_data pokemon.Pokemon) {
+	c.HTML(http.StatusOK, "singleEntry.html", gin.H{
+		"pokemonID":   pokemon_id,
+		"pokemonData": pokemon_data,
 	})
 }
