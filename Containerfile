@@ -1,13 +1,14 @@
-FROM golang:1.19.2-alpine3.15
+FROM golang:1.19
 
-WORKDIR $GOPATH/src/github.com/maknop/pokedex-web-app
+WORKDIR /
 
-COPY . .
+COPY go.mod go.sum /
+RUN go mod download
 
-RUN go get -d -v ./...
+COPY . /
 
-RUN go install -v ./...
+RUN go build -o /pokedex-web-app
 
 EXPOSE 8080
 
-CMD ["pokedex-web-app"]
+CMD ["/pokedex-web-app"]
