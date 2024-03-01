@@ -1,11 +1,13 @@
 package main
 
 import (
-	api "pokedex-web-app/api"
-	routes "pokedex-web-app/routes"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
+
+	data "pokedex-web-app/data"
+	pokemon "pokedex-web-app/routes"
 )
 
 func main() {
@@ -13,11 +15,13 @@ func main() {
 	router.LoadHTMLGlob("templates/*.tmpl")
 	router.Static("/styles", "./styles")
 
-	allPokemon := api.GetPokemonData()
+	allPokemon := data.GetPokemonData()
+
+	log.Info("Pokedex API running...")
 
 	// Routes
-	routes.LandingPage(router, allPokemon)
-	routes.PokemonById(router, allPokemon)
+	pokemon.LandingPage(router, allPokemon)
+	pokemon.PokemonById(router, allPokemon)
 
 	router.Run("localhost:8080")
 

@@ -1,11 +1,10 @@
 package handler
 
 import (
+	"github.com/gin-gonic/gin"
+
 	types "pokedex-web-app/types"
 	views "pokedex-web-app/views"
-
-	"github.com/gin-gonic/gin"
-	//log "github.com/sirupsen/logrus"
 )
 
 func LandingPage(router *gin.Engine, allPokemon []types.Pokemon) {
