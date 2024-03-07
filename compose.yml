@@ -8,6 +8,7 @@ services:
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_USER=postgres
     - POSTGRES_DB=pokemondb
+    - POSTGRES_HOST=postgres
   postgres:
     image: "docker.io/library/postgres:16"
     ports:
