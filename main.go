@@ -17,7 +17,7 @@ func main() {
 
 	allPokemon := data.GetPokemonData()
 
-	log.Info("Pokedex API running...")
+	log.Info("pokedex API running...")
 
 	// Routes
 	pokemon.LandingPage(router, allPokemon)

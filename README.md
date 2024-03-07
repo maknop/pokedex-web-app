@@ -19,16 +19,11 @@ Node.js.
 </p>
 
 ## Build and Run application
-Create a pod on your local machine:
+Start up your compose file (docker-compose is fine!):
 ```
-sudo podman pod create
+podman-compose -f compose.yml up -d --build
 ```
 
-Build and run your container:
-```
-podman build -t pokedex-web-app:latest .
-podman run -d -p 8080:8080 pokdex-web-app:latest
-```
 Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 
 ## Resource List
