@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	models "pokedex-web-app/models"
+	models "github.com/maknop/pokedex-web-app/models"
 )
 
 // Endpoint: "/"

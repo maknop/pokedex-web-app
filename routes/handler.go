@@ -3,8 +3,8 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 
-	models "pokedex-web-app/models"
-	views "pokedex-web-app/views"
+	models "github.com/maknop/pokedex-web-app/models"
+	views "github.com/maknop/pokedex-web-app/views"
 )
 
 func LandingPage(router *gin.Engine, allPokemon []models.Pokemon) {

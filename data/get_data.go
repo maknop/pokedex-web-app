@@ -9,13 +9,13 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	types "pokedex-web-app/types"
+	models "github.com/maknop/pokedex-web-app/models"
 )
 
-func GetPokemonData() []types.Pokemon {
+func GetPokemonData() []models.Pokemon {
 
-	var currPokemon types.Pokemon
-	var allPokemon []types.Pokemon
+	var currPokemon models.Pokemon
+	var allPokemon []models.Pokemon
 
 	log.Info("Request for all pokemon data made.")
 

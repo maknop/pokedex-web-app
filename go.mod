@@ -1,4 +1,4 @@
-module pokedex-web-app
+module github.com/maknop/pokedex-web-app
 
 go 1.18
 
