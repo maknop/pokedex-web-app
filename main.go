@@ -6,14 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	data "pokedex-web-app/data"
-	pokemon "pokedex-web-app/routes"
+	data "github.com/maknop/pokedex-web-app/data"
+	pokemon "github.com/maknop/pokedex-web-app/routes"
+	db "github.com/maknop/pokedex-web-app/database"
 )
 
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*.tmpl")
 	router.Static("/styles", "./styles")
+
+	db.Connect()
 
 	allPokemon := data.GetPokemonData()
 

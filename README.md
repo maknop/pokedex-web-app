@@ -26,6 +26,11 @@ podman-compose -f compose.yml up -d --build
 
 Navigate to [localhost:8080/pokemon](http://localhost:8080/pokemon).
 
+## Exec into Postgresql Pod
+```
+podman exec -it pokedex-web-app_postgres_1 psql -d pokemondb -U postgres
+```
+
 ## Resource List
 | Resource             | Description                                     |
 | :---                 | :---                                            |
