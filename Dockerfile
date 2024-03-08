@@ -1,4 +1,4 @@
-FROM golang:1.19
+FROM golang:1.19 as build
 
 WORKDIR /
 
@@ -7,8 +7,12 @@ RUN go mod download
 
 COPY . /
 
-# RUN go build -o /pokedex-web-app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build
+
+FROM debian:buster-slim
+
+WORKDIR /
+COPY --from=build / .
 
 EXPOSE 8080
 
