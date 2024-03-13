@@ -1,18 +1,13 @@
-FROM golang:1.19 as build
+FROM golang:1.19
 
-WORKDIR /
+WORKDIR /app
 
-COPY go.mod go.sum /
+COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . /
+COPY . ./
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build
-
-FROM debian:buster-slim
-
-WORKDIR /
-COPY --from=build / .
+RUN go build -o /pokedex-web-app
 
 EXPOSE 8080
 
