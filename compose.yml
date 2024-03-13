@@ -1,7 +1,6 @@
 services:
   db:
-    image: "postgres:15"
-    network_mode: bridge
+    image: "postgres:13"
     restart: always
     ports:
       - "5432:5432"
@@ -9,23 +8,22 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=pokemondb
-    networks:
-      - backend
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}" ]
 
   app:
     build: .
     depends_on:
-    - db
+      db:
+        condition: service_healthy
     ports:
       - "8080:8080"
+    restart: on-failure
     environment:
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_USER=postgres
     - POSTGRES_DB=pokemondb
     - POSTGRES_HOST=db
-    networks:
-    - backend
 
-networks:
-  backend:
-    driver: bridge
+volumes:  
+  pgdata: {}
