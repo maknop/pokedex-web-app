@@ -6,52 +6,38 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"sync"
 
 	log "github.com/sirupsen/logrus"
 
-	pokemon "pokedex-web-app/types"
+	models "github.com/maknop/pokedex-web-app/models"
 )
 
-func GetPokemonData() []pokemon.Pokemon {
-	var currPokemon pokemon.Pokemon
-	var allPokemon []pokemon.Pokemon
+func GetPokemonData() []models.Pokemon {
 
-	wg := sync.WaitGroup{}
-	var m sync.Mutex
+	var currPokemon models.Pokemon
+	var allPokemon []models.Pokemon
 
 	log.Info("Request for all pokemon data made.")
 
-	for i := 1; i <= 25; i++ {
-		wg.Add(1)
+	for i := 1; i <= 1025; i++ {
+		resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%d", i))
+		if err != nil {
+			log.Fatal(err)
+		}
 
-		go func(i int) {
-			m.Lock()
+		pokemonData, err := io.ReadAll(resp.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-			resp, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%d", i))
-			if err != nil {
-				log.Fatal(err)
-			}
+		if err := json.NewDecoder(bytes.NewReader(pokemonData)).Decode(&currPokemon); err != nil {
+			log.Fatalf("Error parsing json data: %s", err)
+		} else {
+			log.Printf("Pokemon data received - Pokemon ID: %3d, Pokemon Name: %s\n", currPokemon.ID, currPokemon.Name)
+		}
 
-			pokemonData, err := io.ReadAll(resp.Body)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			if err := json.NewDecoder(bytes.NewReader(pokemonData)).Decode(&currPokemon); err != nil {
-				log.Fatalf("Error parsing json data: %s", err)
-			} else {
-				log.Printf("Pokemon data received - Pokemon ID: %3d, Pokemon Name: %s\n", currPokemon.ID, currPokemon.Name)
-			}
-
-			allPokemon = append(allPokemon, currPokemon)
-
-			m.Unlock()
-			wg.Done()
-		}(i)
+		allPokemon = append(allPokemon, currPokemon)
 	}
-
-	wg.Wait()
 
 	return allPokemon
 }

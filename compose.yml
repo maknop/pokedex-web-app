@@ -1,16 +1,29 @@
 services:
-  web:
+  db:
+    image: "postgres:13"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=pokemondb
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}" ]
+
+  app:
     build: .
-    network_mode: host
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "8080:8080"
-  postgres:
-    image: "docker.io/library/postgres:16"
-    ports:
-      - 5432:5432
-    volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
+    restart: on-failure
     environment:
-      - POSTGRES_PASSWORD=S3cret
-      - POSTGRES_USER=citizix_user
-      - POSTGRES_DB=citizix_db
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_USER=postgres
+    - POSTGRES_DB=pokemondb
+    - POSTGRES_HOST=db
+
+volumes:  
+  pgdata: {}
