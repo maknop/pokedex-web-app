@@ -12,41 +12,29 @@ import (
 const URL = "https://beta.pokeapi.co/graphql/v1beta"
 
 func GetPokemon() {
-	// Query
-	// query := `
-	// 	{
-	// 		query samplePokeAPIquery {
-	// 			pokemon_v2_pokemonsprites {
-	// 			  sprites
-	// 			  pokemon_v2_pokemon {
-	// 				weight
-	// 				height
-	// 				id
-	// 				name
-	// 			  }
-	// 		    }
-	// 		}
-	// 	}
-	// `
-
 	query := map[string]string{
 		"query": `
 			{
-				pokemon_v2_pokemonsprites {
-			        sprites
-			        pokemon_v2_pokemon {
-				      weight
-				      height
-				      id
-				      name
-			        }
-			      }
-		        }
+			  pokemon_v2_pokemonsprites {
+			    sprites
+			    pokemon_v2_pokemon {
+				  weight
+				  height
+				  id
+				  name
+			    }
+			  }
+		    }
 		`,
 	}
 
 	jsonValue, _ := json.Marshal(query)
+
 	req, err := http.NewRequest("POST", URL, bytes.NewBuffer(jsonValue))
+	if err != nil {
+		fmt.Printf("The HTTP request failed with error %s\n", err)
+	}
+
 	req.Header.Set("content-type", "application/json")
 	req.Header.Set("accept", "*/*")
 
@@ -60,5 +48,4 @@ func GetPokemon() {
 
 	data, _ := io.ReadAll(response.Body)
 	fmt.Println(string(data))
-
 }
