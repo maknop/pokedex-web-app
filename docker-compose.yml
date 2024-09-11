@@ -3,10 +3,10 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGUSER: ADMIN
+      PGPASSWORD: ADMIN
       PGDATA: /data/postgres
-      POSTGRES_DB: bank
+      PGDATABASE: pokemon
     volumes:
       - db:/data/postgres
     ports:
