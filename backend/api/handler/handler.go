@@ -59,5 +59,5 @@ func main() {
 	log.Info("serving endpoint at /pokemon/:name")
 	http.HandleFunc("/pokemon/:name", pokemonDetails)
 
-	http.ListenAndServe(":8080", nil)
+	log.Error(http.ListenAndServe(":8000", nil))
 }
