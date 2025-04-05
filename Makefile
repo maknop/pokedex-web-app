@@ -1,3 +1,3 @@
-backend:
-	go run backend/api/handler 
+run:
+	go run ./...
 
